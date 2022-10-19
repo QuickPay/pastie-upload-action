@@ -3,8 +3,8 @@ description: "Uploads a document to pastie"
 inputs:
   credentials:
     description: "The credentials for pastie"
-  document:
-    description: "Document to upload"
+  document_env:
+    description: "Env var with document to upload"
 
 ouputs:
   url:
