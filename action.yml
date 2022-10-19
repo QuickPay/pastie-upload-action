@@ -1,0 +1,14 @@
+name: "Pastie Upload"
+description: "Uploads a document to pastie"
+inputs:
+  credentials:
+    description: "The credentials for pastie"
+  document:
+    description: "Document to upload"
+
+ouputs:
+  url:
+    description: "The url to the pastie document"
+runs:
+  using: "node16"
+  main: "index.js"
