@@ -7664,7 +7664,7 @@ const run = async (credentials, doc) => {
 (async () => {
   const credentials = core.getInput("credentials", { required: true });
   const doc = core.getMultilineInput("document", { required: true });
-  const url = run(credentials, doc);
+  const url = await run(credentials, doc);
   core.setOutput("url", url);
 })();
 
