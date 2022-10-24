@@ -7657,14 +7657,33 @@ const run = async (credentials, doc) => {
   return `https://pastie.0auth.io/${key}`;
 };
 
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(747);
 ;// CONCATENATED MODULE: ./index.js
+
 
 
 
 (async () => {
   const credentials = core.getInput("credentials", { required: true });
-  const doc_env = core.getMultilineInput("document_env", { required: true });
-  const doc = process.env[doc_env];
+  const doc_env = core.getInput("document_env", { required: false });
+  const doc_path = core.getInput("document_path", { required: false });
+  let doc = ""
+
+  if (doc_env) {
+    doc = process.env[doc_env];
+  }
+  else if (doc_path) {
+    try {
+      doc = external_fs_.readFileSync(doc_path, 'utf8');
+    } catch (err) {
+      core.setFailed(`Error occurred while reading document: ${err}`);
+    }
+  }
+  else {
+    core.setFailed(`Neither document_env nor document_path are set. Specify one of these.`);
+  }
+
   const url = await run(credentials, doc);
   core.setOutput("url", url);
 })();
