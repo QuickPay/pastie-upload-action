@@ -5,6 +5,8 @@ inputs:
     description: "The credentials for pastie"
   document_env:
     description: "Env var with document to upload"
+  document_path:
+    description: "Path to the file containing the document to upload"
 
 ouputs:
   url:
